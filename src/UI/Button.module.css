@@ -1,0 +1,16 @@
+button{
+    padding: 10px 30px;
+    border-radius: 6px;
+    background-color: #88DB95;
+    color: #fff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    border: 1px solid #88DB95;
+    cursor: pointer;
+}
+
+button.white{
+    background-color: #fff;
+    color: #27BB3E;
+    border: 1px solid #27BB3E;
+}
