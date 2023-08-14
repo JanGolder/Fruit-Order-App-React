@@ -1,14 +1,17 @@
+import { Outlet } from "react-router-dom";
 import Login from "./Login";
-import classes from './Main.module.css';
+import ProductList from "./ProductList";
 
 const Main = ()=>{
 
-return (
-    <main className={classes.main}>
-        <Login/>
-    </main>
-)
+    return (
+        <main>
+            {/* <Login/> */}
+            {<ProductList/>}
+            {<Outlet/>}
+        </main>
 
-};
+    );
+}
 
 export default Main;

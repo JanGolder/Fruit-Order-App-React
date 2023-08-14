@@ -10,7 +10,6 @@ return (
         </Card>
     </section>
 )
-
 };
 
 export default Login;

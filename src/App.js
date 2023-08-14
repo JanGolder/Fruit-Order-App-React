@@ -1,16 +1,28 @@
-import { Fragment } from "react";
-import Header from "./components/Header";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import RootLayout from "./components/RootLayout";
 import Main from "./components/Main";
-import Footer from "./components/Footer";
+import ErrorPage from "./components/ErrorPage";
+import ProductDetail from "./components/ProductDetail";
+import CartModal from "./components/CartModal";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: '/',
+        element: <Main />,
+        children: [{ path: "cart", element: <CartModal /> },],
+      },
+      { path: ":productId", element: <ProductDetail /> },
+    ],
+  },
+]);
 
 const App = () => {
-  return (
-    <Fragment>
-      <Header />
-      <Main />
-      <Footer />
-    </Fragment>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
