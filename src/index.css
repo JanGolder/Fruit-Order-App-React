@@ -14,9 +14,12 @@ body {
 }
 
 main {
-  min-height: calc(100vh - 170px);
+  min-height: calc(100vh - 100px);
   background-color: #fff;
 }
 h1{
+  margin: 0;
+}
+p{
   margin: 0;
 }
