@@ -25,3 +25,22 @@
 .right-side-header button{
     margin-left: 10px;
 }
+
+.button-white{
+    padding: 10px 30px;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #27BB3E;
+    border: 1px solid #27BB3E;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: .3s;
+}
+.button-white:hover{
+    background-color: #59b366;
+    color: #fff;
+    border: 1px solid #59b366;
+}

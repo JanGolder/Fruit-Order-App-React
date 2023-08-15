@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import Button from "../UI/Button";
 import Cart from "./Cart";
 
@@ -11,7 +12,8 @@ const Header = ()=>{
             <p>GreenFood.app</p>
             <div className={classes['right-side-header']}>
                 <Cart/>
-                <Button isWhite={true}>Admin Panel</Button>
+                <NavLink to='admin-panel' className={classes['button-white']}>Admin Panel</NavLink>
+                <NavLink to='/' className={classes['button-white']}>Home</NavLink>
                 <Button isWhite={true}>Logout</Button>
             </div>
         </header>
