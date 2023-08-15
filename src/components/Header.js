@@ -1,7 +1,9 @@
+import Button from "../UI/Button";
 import Cart from "./Cart";
-import Log from "./Log";
+
 
 import classes from './Header.module.css'
+
 
 const Header = ()=>{
     return (
@@ -9,7 +11,8 @@ const Header = ()=>{
             <p>GreenFood.app</p>
             <div className={classes['right-side-header']}>
                 <Cart/>
-                <Log/>                
+                <Button isWhite={true}>Admin Panel</Button>
+                <Button isWhite={true}>Logout</Button>
             </div>
         </header>
     )

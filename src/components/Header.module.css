@@ -1,4 +1,7 @@
 .header{
+    position: fixed;
+    top: 0;
+    left: 0;
     background-color: #88DB95;
     height: 70px;
     width: 100%;
@@ -6,6 +9,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 10%;
+    z-index: 10;
 }
 
 .header p {
@@ -17,4 +21,7 @@
 
 .right-side-header{
     display: flex;
+}
+.right-side-header button{
+    margin-left: 10px;
 }
