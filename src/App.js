@@ -4,6 +4,7 @@ import Main from "./components/Main";
 import ErrorPage from "./components/ErrorPage";
 import ProductDetail from "./components/ProductDetail";
 import CartModal from "./components/CartModal";
+import AdminPanel from "./components/AdminPanel";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
         children: [{ path: "cart", element: <CartModal /> },],
       },
       { path: ":productId", element: <ProductDetail /> },
+      { path: "admin-panel", element: <AdminPanel/> },
     ],
   },
 ]);
