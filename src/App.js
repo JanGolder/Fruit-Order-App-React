@@ -5,6 +5,7 @@ import ErrorPage from "./components/ErrorPage";
 import ProductDetail from "./components/ProductDetail";
 import CartModal from "./components/CartModal";
 import AdminPanel from "./components/AdminPanel";
+import {AuthContextProvider} from "./context/auth-context";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthContextProvider>
+      <RouterProvider router={router} />;
+    </AuthContextProvider>
+  )
 };
 
 export default App;

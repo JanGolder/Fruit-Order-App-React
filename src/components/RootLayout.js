@@ -3,10 +3,12 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const RootLayout = () => {
+
+
   return (
     <>
-      <Header />
-      <Outlet />
+      <Header/>
+      <Outlet/>
       <Footer />
     </>
   );

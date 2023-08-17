@@ -1,9 +1,14 @@
+import { useContext } from "react";
 import useInput from "../hooks/use-input";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import classes from "./Login.module.css";
+import AuthContext from "../context/auth-context";
 
-const Login = ({loginHandler}) => {
+const Login = () => {
+
+const ctx = useContext(AuthContext);
+
   const {
     inputValue: emailInputValue,
     isValid: emailIsValid,
@@ -31,7 +36,7 @@ const Login = ({loginHandler}) => {
     e.preventDefault();
     emailReset();
     passwordReset();
-    loginHandler();
+    ctx.onLogin();
   };
 
   const emailInputClasses = emailHasError ? "invalid" : "";
