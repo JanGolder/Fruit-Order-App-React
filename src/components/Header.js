@@ -1,25 +1,32 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import AuthContext from "../context/auth-context";
 import Button from "../UI/Button";
 import Cart from "./Cart";
+import classes from "./Header.module.css";
 
+const Header = () => {
+  const ctx = useContext(AuthContext);
 
-import classes from './Header.module.css'
-
-
-const Header = ()=>{
-    return (
-        <header className={classes.header}>
-            <p>GreenFood.app</p>
-            <div className={classes['right-side-header']}>
-                <Cart/>
-                <NavLink to='admin-panel' className={classes['button-white']}>Admin Panel</NavLink>
-                <NavLink to='/' className={classes['button-white']}>Home</NavLink>
-                <Button isWhite={true}>Logout</Button>
-            </div>
-        </header>
-    )
-
+  return (
+    <header className={classes.header}>
+      <p>GreenFood.app</p>
+      <div className={classes["right-side-header"]}>
+        {ctx.isLoggedIn && <Cart />}
+        {ctx.isLoggedIn && (
+          <NavLink to="admin-panel" className={classes["button-white"]}>
+            Admin Panel
+          </NavLink>
+        )}
+        {ctx.isLoggedIn && (
+          <NavLink to="/" className={classes["button-white"]}>
+            Home
+          </NavLink>
+        )}
+        {ctx.isLoggedIn && <button onClick={ctx.onLogout} className={classes["button-white"]}>Logout</button>}
+      </div>
+    </header>
+  );
 };
-
 
 export default Header;
