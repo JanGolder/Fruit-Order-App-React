@@ -28,3 +28,7 @@ header a.active {
   color: #fff;
   border: 1px solid #27bb3e;
 }
+input.invalid{
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
+}
