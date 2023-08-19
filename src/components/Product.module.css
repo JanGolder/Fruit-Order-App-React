@@ -1,0 +1,67 @@
+.product{
+    border-bottom: 1px solid #333;
+    padding: 15px;
+    position: relative;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.product .main-img{
+    width: 135px;
+}
+.product .eco-farm{
+    position: absolute;
+    top: 15px;
+    left: 50%;
+}
+.product .main-info{
+    min-width: 50%;
+    margin: 0 15px;
+}
+.product .name{
+    text-decoration: none;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+.product .text{
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    margin: 0 0 5px;
+}
+.product .info-wrap{
+    display: flex;
+    align-items: center;
+}
+.product .info-wrap img{
+    margin-right: 5px;
+}
+
+.product .amount{
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.product .amount input{
+    width: 65px;
+    padding: 5px 10px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.product .price{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.product .delivery{
+    text-align: center;
+    height: 18px;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
