@@ -3,7 +3,7 @@ import RootLayout from "./components/RootLayout";
 import Main from "./components/Main";
 import ErrorPage from "./components/ErrorPage";
 import ProductDetail from "./components/ProductDetail";
-import CartModal from "./components/CartModal";
+// import CartModal from "./components/CartModal";
 import AdminPanel from "./components/AdminPanel";
 import {AuthContextProvider} from "./context/auth-context";
 
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
       {
         index: '/',
         element: <Main />,
-        children: [{ path: "cart", element: <CartModal /> },],
+        // children: [{ path: "cart", element: <CartModal /> },],
       },
       { path: ":productId", element: <ProductDetail /> },
       { path: "admin-panel", element: <AdminPanel/> },
