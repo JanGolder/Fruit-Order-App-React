@@ -1,0 +1,54 @@
+.modal-wrap{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    z-index: 30;
+    padding: 30px 30px 20px;
+    min-width: 450px;
+}
+.modal-wrap h1{
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+.modal-wrap ul{
+    list-style: none;
+    margin: 0 0 25px;
+    padding: 0;
+
+}
+.modal-wrap ul .no-products{
+    text-align: center;
+    margin: 50px 0;
+}
+
+.summary-wrap{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 25px;
+}
+.summary-wrap p{
+    font-size: 16px;
+    font-weight: 800;
+}
+.summary-price-wrap{
+    text-align: right;
+}
+
+.summary-price-wrap>p:first-child{
+    margin-bottom: 10px;
+}
+.summary-price-wrap .summary-delivery{
+    font-size: 12px;
+    font-weight: 300;
+}
+.buttons-wrap{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    column-gap: 20px;
+}
