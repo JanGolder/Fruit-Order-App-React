@@ -1,10 +1,12 @@
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../context/auth-context";
 import ecoFram from "../assets/ecoFram.png";
 import pin from "../assets/icon-pin.png";
 import dollar from "../assets/icon-dollar.png";
 import delivery from "../assets/icon-delivery.png";
 import classes from './Product.module.css';
-import Button from '../UI/Button';
+
 
 const Product = (props) => {
   const {
@@ -19,6 +21,20 @@ const Product = (props) => {
     isFreeDelivery,
     freeDeliveryAmount,
   } = props.productData;
+
+const ctx = useContext(AuthContext);
+
+const [orderDetail, setAmount] = useState({amount:0, price: 0, productDetail:props.productData});
+
+const amountProductHandler = (e)=>{
+  setAmount({amount: e.target.value, price: e.target.value*price, productDetail:props.productData})
+}
+
+const updateCartHandler = ()=>{
+  ctx.cartUpdate(orderDetail);
+}
+
+const isFreeDeliveryAmount = orderDetail.price >= freeDeliveryAmount;
 
   return (
     <li className={classes.product}>
@@ -45,10 +61,10 @@ const Product = (props) => {
         )}
       </div>
       <div>
-        <p className={classes.amount}>Amount <input type="number"/> {unit}</p>
-        <p className={classes.price}>$ 225 PLN</p>
-        <p className={classes.delivery}>Free delivery!</p>
-        <Button>+ Add Product</Button>
+        <p className={classes.amount}>Amount <input onChange={amountProductHandler} type="number" min={0}/> {unit}</p>
+        <p className={classes.price}>$ {orderDetail.price} PLN</p>
+        {isFreeDeliveryAmount ? <p className={`${classes.delivery} ${classes['free-delivery']}`}>Free delivery!</p>: <p className={classes.delivery}>Only {freeDeliveryAmount-orderDetail.price}$ for free delivery!</p>}
+        <button onClick={updateCartHandler} className={classes.button} disabled={orderDetail.price === 0}>+ Add Product</button>
       </div>
     </li>
   );
