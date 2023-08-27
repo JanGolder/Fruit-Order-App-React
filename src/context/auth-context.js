@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 const AuthContext = React.createContext({
   productsInCart: [],
   isLoggedIn: false,
-  hasProducts: false,
   onLogout: () => {},
   onLogin: () => {},
   onModalActive: ()=>{},
@@ -14,7 +13,6 @@ export const AuthContextProvider = (props) => {
   const [productsInCart, setProductsInCart] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isModalActive, setIsModalActive] = useState(false);
-  const [hasProducts, setHasProducts] = useState(true);
 
   useEffect(() => {
     const storedUserLogInfo = localStorage.getItem("isLoggedIn");
@@ -38,9 +36,39 @@ export const AuthContextProvider = (props) => {
     setIsLoggedIn(true);
   };
 
-const productsCartUpdate = (data)=>{
-  setProductsInCart(prevState=> [...prevState,data]);
-  console.log(productsInCart)
+const productsCartUpdate = (data, type, inputAmount)=>{
+  
+  const reapetedProductIndex = productsInCart.findIndex(product=> product.productDetail.id === data.productDetail.id);
+  
+  const reapetedProduct = productsInCart[reapetedProductIndex];
+  let updatedItems;
+
+  if(reapetedProduct){
+
+    if(type === 'add'){
+      const updatedItem = {
+        ...reapetedProduct,
+        amount: productsInCart[reapetedProductIndex].amount*1 + inputAmount*1
+      };
+      updatedItems = [...productsInCart];
+      updatedItems[reapetedProductIndex] = updatedItem;
+  
+      setProductsInCart(updatedItems);
+    } else if (type === 'subtract'){
+      const updatedItem = {
+        ...reapetedProduct,
+        amount: productsInCart[reapetedProductIndex].amount*1 - inputAmount*1
+      };
+      updatedItems = [...productsInCart];
+      updatedItems[reapetedProductIndex] = updatedItem;
+  
+      setProductsInCart(updatedItems)
+    }
+  }
+ else{
+   setProductsInCart(prevState=> [...prevState,data]);
+ }
+ console.log(productsInCart)
 }
 
   return (
@@ -53,7 +81,6 @@ const productsCartUpdate = (data)=>{
         onLogin: loginHandler,
         isModalActive: isModalActive,
         onModalActive: modalActiveHandler,
-        hasProducts:hasProducts,
       }}
     >
       {props.children}
