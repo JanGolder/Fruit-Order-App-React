@@ -17,15 +17,25 @@ const Backdrop = () =>{
 
 const ModalOverlay = () =>{
     const ctx = useContext(AuthContext);
+
+const hasProducts = ctx.productsInCart.length>0;
+
+
+
     return (
         <div className={classesModal['modal-wrap']}>
             <h1>Your Cart Summary</h1>
             <ul>
-                {ctx.hasProducts && <CartProduct/>}
-                {ctx.hasProducts && <CartProduct/>}
-                {!ctx.hasProducts && <p className={classesModal['no-products']}>No products yet, please add something!</p>}
+                {ctx.productsInCart.map(product=>{
+                    return (
+                        <CartProduct key={product.productDetail.id} product={product}/>
+                    )
+                })}
+                {/* {ctx.hasProducts && <CartProduct/>}
+                {ctx.hasProducts && <CartProduct/>} */}
+                {!hasProducts && <p className={classesModal['no-products']}>No products yet, please add something!</p>}
             </ul>
-            {ctx.hasProducts && <div className={classesModal['summary-wrap']}>
+            {hasProducts && <div className={classesModal['summary-wrap']}>
                 <p>Total Amount:</p>
                 <div className={classesModal['summary-price-wrap']}>
                     <p>$ 675 PLN</p>
@@ -34,7 +44,7 @@ const ModalOverlay = () =>{
             </div>}
             <div className={classesModal['buttons-wrap']}>
             <Button isWhite={true} onClose={ctx.onModalActive}>Close</Button>
-            {ctx.hasProducts && <Button>Order</Button>}
+            {hasProducts && <Button>Order</Button>}
             </div>
         </div>
     )
