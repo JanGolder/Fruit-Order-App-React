@@ -10,10 +10,12 @@ const modalHandler = ()=>{
     ctx.onModalActive();
 }
 
+const hasProducts = ctx.productsInCart.length>0;
+
     return (
         <div className={classes['cart-wrap']} onClick={modalHandler}>
             <p className={classes['cart-text']}>Your Cart</p>
-            <div className={classes['cart-amount']}>3</div>
+            <div className={hasProducts ? classes['cart-amount'] : classes['cart-no-amount']}>{ctx.productsInCart.length}</div>
         </div>
     )
 };
