@@ -58,8 +58,8 @@ const ProductList = () => {
     <section className={classes['product-list']}>
       <Card>
         <h1>Order Fresh Fruits and Vegetables from your neighborhood!</h1>
-        <select name="location">
-            <option value="" disabled selected>Choose Your Location</option>
+        <select name="location" defaultValue="">
+            <option value="" disabled>Choose Your Location</option>
             <option value="pomorskie">pomorskie</option>
             <option value="mazowieckie">mazowieckie</option>
         </select>
