@@ -25,16 +25,22 @@
 .delivery-info{
     font-size: 12px;
 }
-.input-wrap{
+.delivery-free{
+    font-weight: 800;
+    color: #27BB3E;
+}
+.amount-wrap{
     display: flex;
     margin-bottom: 10px;
 }
-.input-wrap input{
-    width: 50px;
+.amount-wrap .amount{
+    width: 45px;
     margin-right: 5px;
+    margin-left: 2px;
+    padding: 0 5px;
     border: 1px solid #ccc;
 }
-.input-wrap p{
+.amount-wrap p{
     font-size: 16px;
 }
 .buttons-wrap{
