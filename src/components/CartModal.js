@@ -38,8 +38,8 @@ const hasProducts = ctx.productsInCart.length>0;
             {hasProducts && <div className={classesModal['summary-wrap']}>
                 <p>Total Amount:</p>
                 <div className={classesModal['summary-price-wrap']}>
-                    <p>$ 675 PLN</p>
-                    <p className={classesModal['summary-delivery']}>Delivery 0 PLN within</p>
+                    <p>$ {ctx.totalPrice} PLN</p>
+                    <p className={classesModal['summary-delivery']}>Delivery {ctx.totalDeliveryPrice} PLN within</p>
                 </div>
             </div>}
             <div className={classesModal['buttons-wrap']}>
