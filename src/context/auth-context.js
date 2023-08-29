@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
 
 const AuthContext = React.createContext({
-  productsInCart: [],
+  productsInCart: {},
+  summaryData: {},
   isLoggedIn: false,
+  totalPrice: 0,
+  totalDeliveryPrice: 0,
   onLogout: () => {},
   onLogin: () => {},
-  onModalActive: ()=>{},
-  productsCartUpdate: ()=>{},
+  onModalActive: () => {},
+  productsCartUpdate: () => {},
 });
 
 export const AuthContextProvider = (props) => {
   const [productsInCart, setProductsInCart] = useState([]);
+  // const [summaryData, setSummaryData] = useState({totalAmount: 0,totalDeliveryPrice:0});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isModalActive, setIsModalActive] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalDeliveryPrice, setTotalDeliveryPrice] = useState(0);
 
   useEffect(() => {
     const storedUserLogInfo = localStorage.getItem("isLoggedIn");
@@ -22,9 +28,28 @@ export const AuthContextProvider = (props) => {
     }
   }, []);
 
-  const modalActiveHandler = ()=>{
-    setIsModalActive(isModalActive=> !isModalActive);
-  }
+  useEffect(() => {
+    let currentTotalPrice = 0;
+    let currentTotalDeliveryPrice = 0;
+
+    productsInCart.forEach((product) => {
+      if (product.price >= product.productDetail.freeDeliveryAmount) {
+        currentTotalPrice += product.price;
+        currentTotalDeliveryPrice += 0;
+      } else {
+        currentTotalPrice += product.price;
+        currentTotalDeliveryPrice += product.deliveryPrice;
+      }
+    });
+
+    setTotalDeliveryPrice(currentTotalDeliveryPrice);
+    setTotalPrice(currentTotalPrice + currentTotalDeliveryPrice);
+
+  }, [productsInCart]);
+
+  const modalActiveHandler = () => {
+    setIsModalActive((isModalActive) => !isModalActive);
+  };
 
   const logoutHandler = () => {
     localStorage.removeItem("isLoggedIn");
@@ -36,46 +61,57 @@ export const AuthContextProvider = (props) => {
     setIsLoggedIn(true);
   };
 
-const productsCartUpdate = (data, type, inputAmount)=>{
-  
-  const reapetedProductIndex = productsInCart.findIndex(product=> product.productDetail.id === data.productDetail.id);
-  
-  const reapetedProduct = productsInCart[reapetedProductIndex];
-  let updatedItems;
+  const productsCartUpdate = (data, type, inputAmount) => {
+    const reapetedProductIndex = productsInCart.findIndex(
+      (product) => product.productDetail.id === data.productDetail.id
+    );
 
-  if(reapetedProduct){
+    const reapetedProduct = productsInCart[reapetedProductIndex];
+    let updatedItems;
 
-    if(type === 'add'){
-      const updatedItem = {
-        ...reapetedProduct,
-        amount: productsInCart[reapetedProductIndex].amount*1 + inputAmount*1
-      };
-      updatedItems = [...productsInCart];
-      updatedItems[reapetedProductIndex] = updatedItem;
-  
-      setProductsInCart(updatedItems);
-    } else if (type === 'subtract'){
-      const updatedItem = {
-        ...reapetedProduct,
-        amount: productsInCart[reapetedProductIndex].amount*1 - inputAmount*1
-      };
-      updatedItems = [...productsInCart];
-      updatedItems[reapetedProductIndex] = updatedItem;
-  
-      setProductsInCart(updatedItems)
+    if (reapetedProduct) {
+      if (type === "add") {
+        const updatedItem = {
+          ...reapetedProduct,
+          amount:
+            productsInCart[reapetedProductIndex].amount * 1 + inputAmount * 1,
+          price:
+            (productsInCart[reapetedProductIndex].amount * 1 +
+              inputAmount * 1) *
+            productsInCart[reapetedProductIndex].productDetail.price,
+        };
+        updatedItems = [...productsInCart];
+        updatedItems[reapetedProductIndex] = updatedItem;
+
+        setProductsInCart(updatedItems);
+      } else if (type === "subtract") {
+        const updatedItem = {
+          ...reapetedProduct,
+          amount:
+            productsInCart[reapetedProductIndex].amount * 1 - inputAmount * 1,
+          price:
+            (productsInCart[reapetedProductIndex].amount * 1 -
+              inputAmount * 1) *
+            productsInCart[reapetedProductIndex].productDetail.price,
+        };
+        updatedItems = [...productsInCart];
+        updatedItems[reapetedProductIndex] = updatedItem;
+
+        setProductsInCart(updatedItems);
+      }
+    } else {
+      setProductsInCart((prevState) => [...prevState, data]);
     }
-  }
- else{
-   setProductsInCart(prevState=> [...prevState,data]);
- }
- console.log(productsInCart)
-}
+  };
 
   return (
     <AuthContext.Provider
       value={{
-        productsInCart:productsInCart,
-        cartUpdate:productsCartUpdate,
+        productsInCart: productsInCart,
+        // summaryData: summaryData,
+        totalPrice,
+        totalDeliveryPrice,
+        cartUpdate: productsCartUpdate,
         isLoggedIn: isLoggedIn,
         onLogout: logoutHandler,
         onLogin: loginHandler,
