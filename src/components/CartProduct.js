@@ -19,7 +19,6 @@ const CartProduct = (props) => {
     
     
     const [cartProduct, setCartProduct] = useState(currentProductObj);
-    console.log(cartProduct)
 
   const addProductHandler = ()=>{
     let amount = cartProduct.amount*1 + 1;
