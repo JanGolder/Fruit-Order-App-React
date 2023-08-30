@@ -28,11 +28,18 @@ const CartProduct = (props) => {
   }
   const subtractProductHandler = ()=>{
     let amount = cartProduct.amount*1 - 1;
-    if(amount < 0){
+    if(amount < 1){
+      if (window.confirm('Are you sure you want to remove this product out of the cart?')) {
         amount = 0;
+        ctx.cartUpdate(currentProductObj, 'subtract', 1);
+      } else {
+        amount = 1;
+      }
+        
+    }else {
+      ctx.cartUpdate(currentProductObj, 'subtract', 1);
     }
     setCartProduct(prevState => ({...prevState, amount: amount}));
-    ctx.cartUpdate(currentProductObj, 'subtract', 1);
   }
 
 
@@ -60,7 +67,7 @@ const CartProduct = (props) => {
           </p>
         ) : (
           <p className={classes["delivery-info"]}>
-            Only{" "}
+            Only
             {productDetail.freeDeliveryAmount - currentProductObj.amount * productDetail.price}$
             for free delivery!
           </p>
