@@ -85,6 +85,7 @@ export const AuthContextProvider = (props) => {
 
         setProductsInCart(updatedItems);
       } else if (type === "subtract") {
+        if((productsInCart[reapetedProductIndex].amount * 1 - inputAmount * 1)>0){
         const updatedItem = {
           ...reapetedProduct,
           amount:
@@ -97,7 +98,12 @@ export const AuthContextProvider = (props) => {
         updatedItems = [...productsInCart];
         updatedItems[reapetedProductIndex] = updatedItem;
 
-        setProductsInCart(updatedItems);
+        setProductsInCart(updatedItems);          
+        } else {
+          const newProductsInCart = productsInCart.filter(product=>product.productDetail.id !== data.productDetail.id);
+          setProductsInCart(newProductsInCart);   
+        }
+
       }
     } else {
       setProductsInCart((prevState) => [...prevState, data]);
