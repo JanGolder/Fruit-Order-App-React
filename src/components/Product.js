@@ -19,19 +19,26 @@ const Product = (props) => {
     price,
     unit,
     isFreeDelivery,
+    deliveryAmount,
     freeDeliveryAmount,
   } = props.productData;
 
 const ctx = useContext(AuthContext);
 
-const [orderDetail, setAmount] = useState({amount:0, price: 0, productDetail:props.productData});
+
+// const currentProduct = ctx.productsInCart.filter(product=> product.productDetail.id === id);
+// const currentProductObj = currentProduct[0];
+
+// console.log(currentProduct[0])
+
+const [orderDetail, setOrderDetail] = useState({amount:0, price: 0, deliveryPrice:0, productDetail:props.productData});
 
 const amountProductHandler = (e)=>{
-  setAmount({amount: e.target.value, price: e.target.value*price, productDetail:props.productData})
+  setOrderDetail({amount: e.target.value*1, price: e.target.value*price, deliveryPrice:e.target.value*price>=freeDeliveryAmount?0:15, productDetail:props.productData})
 }
 
 const updateCartHandler = ()=>{
-  ctx.cartUpdate(orderDetail);
+  ctx.cartUpdate(orderDetail, 'add', orderDetail.amount);
 }
 
 const isFreeDeliveryAmount = orderDetail.price >= freeDeliveryAmount;
