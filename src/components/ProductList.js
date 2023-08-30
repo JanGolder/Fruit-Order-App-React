@@ -13,6 +13,7 @@ const products = [
     price: 15,
     unit: "kg",
     isFreeDelivery: true,
+    deliveryAmount: 15,
     freeDeliveryAmount: 100,
   },
   {
@@ -25,6 +26,7 @@ const products = [
     price: 10,
     unit: "kg",
     isFreeDelivery: true,
+    deliveryAmount: 15,
     freeDeliveryAmount: 100,
   },
   {
@@ -37,6 +39,7 @@ const products = [
     price: 8,
     unit: "kg",
     isFreeDelivery: true,
+    deliveryAmount: 15,
     freeDeliveryAmount: 100,
   },
   {
@@ -49,6 +52,7 @@ const products = [
     price: 3,
     unit: "szt",
     isFreeDelivery: true,
+    deliveryAmount: 20,
     freeDeliveryAmount: 100,
   },
 ];
