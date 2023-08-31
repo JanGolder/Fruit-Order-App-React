@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/auth-context";
 import ecoFram from "../assets/ecoFram.png";
@@ -26,10 +26,12 @@ const Product = (props) => {
 const ctx = useContext(AuthContext);
 
 
+
+
+
 // const currentProduct = ctx.productsInCart.filter(product=> product.productDetail.id === id);
 // const currentProductObj = currentProduct[0];
 
-// console.log(currentProduct[0])
 
 const [orderDetail, setOrderDetail] = useState({amount:0, price: 0, deliveryPrice:0, productDetail:props.productData});
 
@@ -38,10 +40,18 @@ const amountProductHandler = (e)=>{
 }
 
 const updateCartHandler = ()=>{
+  
   ctx.cartUpdate(orderDetail, 'add', orderDetail.amount);
+  setOrderDetail((prevState)=>({...prevState, amount: 0}))
 }
 
-const isFreeDeliveryAmount = orderDetail.price >= freeDeliveryAmount;
+const currentProduct = ctx.productsInCart.filter(product=>product.productDetail.id === id);
+const currentProductPrice = currentProduct[0]!== undefined ? currentProduct[0].price+orderDetail.price : orderDetail.price;
+
+console.log(currentProductPrice);
+
+
+const isFreeDeliveryAmount = currentProductPrice >= freeDeliveryAmount;
 
   return (
     <li className={classes.product}>
@@ -68,10 +78,10 @@ const isFreeDeliveryAmount = orderDetail.price >= freeDeliveryAmount;
         )}
       </div>
       <div>
-        <p className={classes.amount}>Amount <input onChange={amountProductHandler} type="number" min={0}/> {unit}</p>
-        <p className={classes.price}>$ {orderDetail.price} PLN</p>
-        {isFreeDeliveryAmount ? <p className={`${classes.delivery} ${classes['free-delivery']}`}>Free delivery!</p>: <p className={classes.delivery}>Only {freeDeliveryAmount-orderDetail.price}$ for free delivery!</p>}
-        <button onClick={updateCartHandler} className={classes.button} disabled={orderDetail.price === 0}>+ Add Product</button>
+        <p className={classes.amount}>Amount <input onChange={amountProductHandler} type="number" min={0} value={orderDetail.amount}/> {unit}</p>
+        <p className={classes.price}>$ {orderDetail.amount*price} PLN</p>
+        {isFreeDeliveryAmount ? <p className={`${classes.delivery} ${classes['free-delivery']}`}>Free delivery!</p>: <p className={classes.delivery}>Only {freeDeliveryAmount-currentProductPrice}$ for free delivery!</p>}
+        <button onClick={updateCartHandler} className={classes.button} disabled={orderDetail.amount === 0}>+ Add Product</button>
       </div>
     </li>
   );
