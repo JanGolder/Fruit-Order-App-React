@@ -67,8 +67,7 @@ const CartProduct = (props) => {
           </p>
         ) : (
           <p className={classes["delivery-info"]}>
-            Only
-            {productDetail.freeDeliveryAmount - currentProductObj.amount * productDetail.price}$
+            Only {productDetail.freeDeliveryAmount - currentProductObj.amount * productDetail.price}$
             for free delivery!
           </p>
         )}
