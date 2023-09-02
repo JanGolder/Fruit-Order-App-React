@@ -42,13 +42,13 @@ const amountProductHandler = (e)=>{
 const updateCartHandler = ()=>{
   
   ctx.cartUpdate(orderDetail, 'add', orderDetail.amount);
-  setOrderDetail((prevState)=>({...prevState, amount: 0}))
+  setOrderDetail((prevState)=>({...prevState, amount: 0, price: 0}))
 }
 
 const currentProduct = ctx.productsInCart.filter(product=>product.productDetail.id === id);
 const currentProductPrice = currentProduct[0]!== undefined ? currentProduct[0].price+orderDetail.price : orderDetail.price;
 
-console.log(currentProductPrice);
+console.log(currentProduct);
 
 
 const isFreeDeliveryAmount = currentProductPrice >= freeDeliveryAmount;
