@@ -13,17 +13,17 @@ const Header = () => {
     <header className={classes.header}>
       <p>GreenFood.app</p>
       <div className={classes["right-side-header"]}>
-        {ctx.isLoggedIn && <Cart />}
-        {ctx.isLoggedIn && (
-          <NavLink to="admin-panel" className={classes["button-white"]}>
-            Admin Panel
-          </NavLink>
-        )}
         {ctx.isLoggedIn && (
           <NavLink to="/" className={classes["button-white"]}>
             Home
           </NavLink>
         )}
+        {ctx.isLoggedIn && (
+          <NavLink to="admin-panel" className={classes["button-white"]}>
+            Admin Panel
+          </NavLink>
+        )}
+        {ctx.isLoggedIn && <Cart />}
         {ctx.isLoggedIn && <button onClick={ctx.onLogout} className={classes["button-white"]}>Logout</button>}
         {ctx.isModalActive && <CartModal/>}
       </div>
