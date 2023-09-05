@@ -14,12 +14,12 @@ const Header = () => {
       <p>GreenFood.app</p>
       <div className={classes["right-side-header"]}>
         {ctx.isLoggedIn && (
-          <NavLink to="/" className={classes["button-white"]}>
+          <NavLink to="/" className={classes["link-white"]}>
             Home
           </NavLink>
         )}
         {ctx.isLoggedIn && (
-          <NavLink to="admin-panel" className={classes["button-white"]}>
+          <NavLink to="admin-panel" className={classes["link-white"]}>
             Admin Panel
           </NavLink>
         )}
