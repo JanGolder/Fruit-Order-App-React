@@ -19,9 +19,6 @@ const ModalOverlay = () =>{
     const ctx = useContext(AuthContext);
 
 const hasProducts = ctx.productsInCart.length>0;
-
-
-
     return (
         <div className={classesModal['modal-wrap']}>
             <h1>Your Cart Summary</h1>
@@ -31,8 +28,6 @@ const hasProducts = ctx.productsInCart.length>0;
                         <CartProduct key={product.productDetail.id} product={product}/>
                     )
                 })}
-                {/* {ctx.hasProducts && <CartProduct/>}
-                {ctx.hasProducts && <CartProduct/>} */}
                 {!hasProducts && <p className={classesModal['no-products']}>No products yet, please add something!</p>}
             </ul>
             {hasProducts && <div className={classesModal['summary-wrap']}>
