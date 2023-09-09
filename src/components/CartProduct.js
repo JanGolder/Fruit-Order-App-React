@@ -4,7 +4,6 @@ import classes from "./CartProduct.module.css";
 import pin from "../assets/icon-pin.png";
 
 const CartProduct = (props) => {
-// tylko id potrzebne
   const { amount, productDetail } = props.product;
 
     const ctx = useContext(AuthContext);
@@ -13,11 +12,7 @@ const CartProduct = (props) => {
 
     const currentProductObj = currentProduct[0];
 
-    
-    
-    
-    
-    
+
     const [cartProduct, setCartProduct] = useState(currentProductObj);
 
   const addProductHandler = ()=>{
@@ -41,11 +36,6 @@ const CartProduct = (props) => {
     }
     setCartProduct(prevState => ({...prevState, amount: amount}));
   }
-
-
-
-
-
 
   const isFreeDeliveryAmount =
   currentProductObj.amount * currentProductObj.productDetail.price >= currentProductObj.productDetail.freeDeliveryAmount;
