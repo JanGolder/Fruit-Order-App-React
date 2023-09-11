@@ -25,14 +25,6 @@ const Product = (props) => {
 
 const ctx = useContext(AuthContext);
 
-
-
-
-
-// const currentProduct = ctx.productsInCart.filter(product=> product.productDetail.id === id);
-// const currentProductObj = currentProduct[0];
-
-
 const [orderDetail, setOrderDetail] = useState({amount:0, price: 0, deliveryPrice:0, productDetail:props.productData});
 
 const amountProductHandler = (e)=>{
@@ -47,9 +39,6 @@ const updateCartHandler = ()=>{
 
 const currentProduct = ctx.productsInCart.filter(product=>product.productDetail.id === id);
 const currentProductPrice = currentProduct[0]!== undefined ? currentProduct[0].price+orderDetail.price : orderDetail.price;
-
-console.log(currentProduct);
-
 
 const isFreeDeliveryAmount = currentProductPrice >= freeDeliveryAmount;
 
