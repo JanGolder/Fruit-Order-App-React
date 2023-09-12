@@ -16,7 +16,6 @@ const router = createBrowserRouter([
       {
         index: '/',
         element: <Main />,
-        // children: [{ path: "cart", element: <CartModal /> },],
       },
       { path: ":productId", element: <ProductDetail /> },
       { path: "admin-panel", element: <AdminPanel/> },
