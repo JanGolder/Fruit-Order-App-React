@@ -11,7 +11,6 @@ import Button from '../UI/Button';
 const Backdrop = () =>{
 
     const ctx = useContext(AuthContext);
-
     return <div onClick={ctx.onModalActive} className={classesBackdrop['modal-backdrop']}/>;
 }
 
