@@ -5,11 +5,9 @@ import AuthContext from '../context/auth-context';
 const Cart = ()=>{
 
 const ctx = useContext(AuthContext);
-
 const modalHandler = ()=>{
     ctx.onModalActive();
 }
-
 const hasProducts = ctx.productsInCart.length>0;
 
     return (
