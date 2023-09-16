@@ -15,7 +15,6 @@ const ctx = useContext(AuthContext);
             {ctx.isLoggedIn && <ProductList/>}
             {ctx.isLoggedIn && <Outlet/>}
         </main>
-
     );
 }
 
