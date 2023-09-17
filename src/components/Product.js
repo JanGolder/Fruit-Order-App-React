@@ -39,7 +39,6 @@ const updateCartHandler = ()=>{
 
 const currentProduct = ctx.productsInCart.filter(product=>product.productDetail.id === id);
 const currentProductPrice = currentProduct[0]!== undefined ? currentProduct[0].price+orderDetail.price : orderDetail.price;
-
 const isFreeDeliveryAmount = currentProductPrice >= freeDeliveryAmount;
 
   return (
