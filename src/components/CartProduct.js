@@ -9,7 +9,6 @@ const CartProduct = (props) => {
     const ctx = useContext(AuthContext);
     const currentProduct = ctx.productsInCart.filter(product=> product.productDetail.id === productDetail.id);
     const currentProductObj = currentProduct[0];
-
     const [cartProduct, setCartProduct] = useState(currentProductObj);
 
   const addProductHandler = ()=>{
