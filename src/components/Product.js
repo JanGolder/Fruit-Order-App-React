@@ -19,7 +19,6 @@ const Product = (props) => {
     price,
     unit,
     isFreeDelivery,
-    deliveryAmount,
     freeDeliveryAmount,
   } = props.productData;
 
