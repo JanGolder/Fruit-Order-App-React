@@ -4,7 +4,7 @@ import classes from "./CartProduct.module.css";
 import pin from "../assets/icon-pin.png";
 
 const CartProduct = (props) => {
-  const { amount, productDetail } = props.product;
+  const { productDetail } = props.product;
 
     const ctx = useContext(AuthContext);
     const currentProduct = ctx.productsInCart.filter(product=> product.productDetail.id === productDetail.id);
