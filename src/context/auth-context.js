@@ -14,7 +14,6 @@ const AuthContext = React.createContext({
 
 export const AuthContextProvider = (props) => {
   const [productsInCart, setProductsInCart] = useState([]);
-  // const [summaryData, setSummaryData] = useState({totalAmount: 0,totalDeliveryPrice:0});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isModalActive, setIsModalActive] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -103,7 +102,6 @@ export const AuthContextProvider = (props) => {
           const newProductsInCart = productsInCart.filter(product=>product.productDetail.id !== data.productDetail.id);
           setProductsInCart(newProductsInCart);   
         }
-
       }
     } else {
       setProductsInCart((prevState) => [...prevState, data]);
