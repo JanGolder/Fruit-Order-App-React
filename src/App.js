@@ -3,7 +3,6 @@ import RootLayout from "./components/RootLayout";
 import Main from "./components/Main";
 import ErrorPage from "./components/ErrorPage";
 import ProductDetail from "./components/ProductDetail";
-// import CartModal from "./components/CartModal";
 import AdminPanel from "./components/AdminPanel";
 import {AuthContextProvider} from "./context/auth-context";
 
