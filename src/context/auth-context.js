@@ -112,7 +112,6 @@ export const AuthContextProvider = (props) => {
     <AuthContext.Provider
       value={{
         productsInCart: productsInCart,
-        // summaryData: summaryData,
         totalPrice,
         totalDeliveryPrice,
         cartUpdate: productsCartUpdate,
