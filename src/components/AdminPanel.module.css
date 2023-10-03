@@ -1,7 +1,5 @@
 .admin-wrap{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 5% 10%;
     min-height: calc(100vh - 100px);
     background-color: #fff;
 }
