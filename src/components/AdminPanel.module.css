@@ -1,5 +1,59 @@
 .admin-wrap{
     padding: 5% 10%;
-    min-height: calc(100vh - 100px);
     background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-content: start;
+}
+
+.main-info{
+    width: 100%;
+    text-align: center;
+}
+
+h3{
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+.element{
+    min-width: 300px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+label {
+    display: inline-block;
+    min-width: 200px;
+    font-size: 14px;
+}
+input{
+    width: 170px;
+}
+input[type=checkbox]{
+    width: initial;
+}
+textarea{
+    width: 170px;
+}
+
+.button{
+    display: block;
+    margin: 40px auto 0;
+    padding: 10px 30px;
+    border-radius: 6px;
+    background-color: #88DB95;
+    color: #fff;
+    border: 1px solid #88DB95;
+    font-family: 'Lucida Sans',  sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.button:hover{
+    background-color: #59b366;
+    color: #fff;
+    border: 1px solid #59b366;
 }
