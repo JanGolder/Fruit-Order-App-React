@@ -3,25 +3,25 @@ import Card from '../UI/Card';
 import useInput from '../hooks/use-input';
 import classes from "./AdminPanel.module.css";
 
-const defaultProductDetails = {
-    id: '',
-    name: '',
-    img: '',
-    desc: '',
-    isEco: false,
-    location: '',
-    price: '',
-    unit: '',
-    isFreeDelivery: false,
-    deliveryAmount: '',
-    freeDeliveryAmount: '',
-}
+// const defaultProductDetails = {
+//     id: '',
+//     name: '',
+//     img: '',
+//     desc: '',
+//     isEco: false,
+//     location: '',
+//     price: '',
+//     unit: '',
+//     isFreeDelivery: false,
+//     deliveryAmount: '',
+//     freeDeliveryAmount: '',
+// }
 
 const AdminPanel = () => {
 
 const [isFreeDelivery, setIsFreeDelivery] = useState(false);
 
-const [productDetails, setProductDetails] = useState(defaultProductDetails);
+// const [productDetails, setProductDetails] = useState(defaultProductDetails);
 
 const {
   value: nameValue,
@@ -134,10 +134,36 @@ const submitHandler = (e)=>{
   freeDeliveryAmountReset();
 }
 
-
-//   const nameRef = useRef("");
-//   const descRef = useRef("");
-//   const imgDateRef = useRef("");
+const nameInputClasses = nameHasError
+? "form-control invalid"
+: "form-control";
+const imgInputClasses = imgHasError
+? "form-control invalid"
+: "form-control";
+const descInputClasses = descHasError
+? "form-control invalid"
+: "form-control";
+const isEcoInputClasses = isEcoHasError
+? "form-control invalid"
+: "form-control";
+const locationInputClasses = locationHasError
+? "form-control invalid"
+: "form-control";
+const priceInputClasses = priceHasError
+? "form-control invalid"
+: "form-control";
+const unitInputClasses = unitHasError
+? "form-control invalid"
+: "form-control";
+const isFreeDeliveryInputClasses = isFreeDeliveryHasError
+? "form-control invalid"
+: "form-control";
+const deliveryAmountInputClasses = deliveryAmountHasError
+? "form-control invalid"
+: "form-control";
+const freeDeliveryAmountInputClasses = freeDeliveryAmountHasError
+? "form-control invalid"
+: "form-control";
 
   return (
     <section className={classes["admin-wrap"]}>
@@ -151,14 +177,17 @@ const submitHandler = (e)=>{
           <div className={classes.element}>
             <label htmlFor="name">Name of product</label>
             <input type="text" id="name" onChange={nameChangeHandler} onBlur={nameBlurHandler} value={nameValue} />
+            {nameHasError && <p>Please write correct name.</p>}
           </div>
           <div className={classes.element}>
             <label htmlFor="desc">Short description</label>
             <textarea rows="2" id="desc" onChange={descChangeHandler} onBlur={descBlurHandler}  value={descValue}></textarea>
+            {nameHasError && <p>Please add short description.</p>}
           </div>
           <div className={classes.element}>
             <label htmlFor="img">Image</label>
             <input type="text" id="img" onChange={imgChangeHandler} onBlur={imgBlurHandler}  value={imgValue} />
+            {nameHasError && <p>Please add img in http format.</p>}
           </div>
           <div className={classes.element}>
             <label htmlFor="eco">Eco farm</label>
@@ -167,10 +196,12 @@ const submitHandler = (e)=>{
           <div className={classes.element}>
             <label htmlFor="location">Location</label>
             <input type="text" id="location" onChange={locationChangeHandler} onBlur={locationBlurHandler}  value={locationValue} />
+            {nameHasError && <p>Please write farms location.</p>}
           </div>
           <div className={classes.element}>
             <label htmlFor="price">Price per unit in PLN</label>
             <input type="number" id="price" onChange={priceChangeHandler} onBlur={priceBlurHandler}  value={priceValue} />
+            {nameHasError && <p>Please write price per unit.</p>}
           </div>
           <div className={classes.element}>
             <label htmlFor="unit">Unit</label>
@@ -180,6 +211,7 @@ const submitHandler = (e)=>{
               <option value="kg">kg</option>
               <option value="pcs">pcs</option>
             </select>
+            {nameHasError && <p>Please choose unit.</p>}
           </div>
           <div className={classes.element}>
             <label htmlFor="freedelivery">Free delivery</label>
@@ -195,14 +227,12 @@ const submitHandler = (e)=>{
           <div className={classes.element}>
             <label htmlFor="deliveryamount">Delivery amount in PLN</label>
             <input type="number" id="deliveryamount" onChange={deliveryAmountChangeHandler} onBlur={deliveryAmountBlurHandler}  value={deliveryAmountValue} />
+            {nameHasError && <p>Please write delivery amount.</p>}
           </div>
-          <button className={classes.button}>Add Product</button>
+          <button disabled={!formIsValid} className={classes.button}>Add Product</button>
         </form>
       </Card>
 
-
-      {/* add new product - inputs
-                edit / remove products - list of products with filter, action when clicked*/}
     </section>
   );
 };
