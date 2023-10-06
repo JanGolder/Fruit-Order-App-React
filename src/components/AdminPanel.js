@@ -24,7 +24,7 @@ const [isFreeDelivery, setIsFreeDelivery] = useState(false);
 // const [productDetails, setProductDetails] = useState(defaultProductDetails);
 
 const {
-  value: nameValue,
+  inputValue: nameValue,
   isValid: nameIsValid,
   hasError: nameHasError,
   valueChangeHandler: nameChangeHandler,
@@ -33,7 +33,7 @@ const {
 } = useInput(value=>value.trim() !== '');
 
 const {
-  value: imgValue,
+  inputValue: imgValue,
   isValid: imgIsValid,
   hasError: imgHasError,
   valueChangeHandler: imgChangeHandler,
@@ -42,7 +42,7 @@ const {
 } = useInput(value=>value.trim() !== '');
 
 const {
-  value: descValue,
+  inputValue: descValue,
   isValid: descIsValid,
   hasError: descHasError,
   valueChangeHandler: descChangeHandler,
@@ -51,7 +51,7 @@ const {
 } = useInput(value=>value.trim() !== '');
 
 const {
-  value: isEcoValue,
+  inputValue: isEcoValue,
   isValid: isEcoIsValid,
   hasError: isEcoHasError,
   valueChangeHandler: isEcoChangeHandler,
@@ -60,7 +60,7 @@ const {
 } = useInput(value=>value.trim() !== '');
 
 const {
-  value: locationValue,
+  inputValue: locationValue,
   isValid: locationIsValid,
   hasError: locationHasError,
   valueChangeHandler: locationChangeHandler,
@@ -69,7 +69,7 @@ const {
 } = useInput(value=>value.trim() !== '');
 
 const {
-  value: priceValue,
+  inputValue: priceValue,
   isValid: priceIsValid,
   hasError: priceHasError,
   valueChangeHandler: priceChangeHandler,
@@ -78,7 +78,7 @@ const {
 } = useInput(value=>value.trim() !== '');
 
 const {
-  value: unitValue,
+  inputValue: unitValue,
   isValid: unitIsValid,
   hasError: unitHasError,
   valueChangeHandler: unitChangeHandler,
@@ -87,7 +87,7 @@ const {
 } = useInput(value=>value.trim() !== '');
 
 const {
-  value: isFreeDeliveryValue,
+  inputValue: isFreeDeliveryValue,
   isValid: isFreeDeliveryIsValid,
   hasError: isFreeDeliveryHasError,
   valueChangeHandler: isFreeDeliveryChangeHandler,
@@ -96,7 +96,7 @@ const {
 } = useInput(value=>value.trim() !== '');
 
 const {
-  value: deliveryAmountValue,
+  inputValue: deliveryAmountValue,
   isValid: deliveryAmountIsValid,
   hasError: deliveryAmountHasError,
   valueChangeHandler: deliveryAmountChangeHandler,
@@ -105,7 +105,7 @@ const {
 } = useInput(value=>value.trim() !== '');
 
 const {
-  value: freeDeliveryAmountValue,
+  inputValue: freeDeliveryAmountValue,
   isValid: freeDeliveryAmountIsValid,
   hasError: freeDeliveryAmountHasError,
   valueChangeHandler: freeDeliveryAmountChangeHandler,
@@ -115,7 +115,8 @@ const {
 
 let formIsValid = false;
 
-if(nameIsValid && imgIsValid && descIsValid && isEcoIsValid && locationIsValid && priceIsValid && unitIsValid && isFreeDeliveryIsValid && deliveryAmountIsValid && freeDeliveryAmountIsValid){
+// ADD Unit Validation (unitIsValid)
+if(nameIsValid && imgIsValid && descIsValid && locationIsValid && priceIsValid && deliveryAmountIsValid && freeDeliveryAmountIsValid){
   formIsValid=true;
 }
 
@@ -174,36 +175,36 @@ const freeDeliveryAmountInputClasses = freeDeliveryAmountHasError
       <Card>
         <h3>Add Product</h3>
         <form onSubmit={submitHandler}>
-          <div className={classes.element}>
+          <div className={nameInputClasses}>
             <label htmlFor="name">Name of product</label>
             <input type="text" id="name" onChange={nameChangeHandler} onBlur={nameBlurHandler} value={nameValue} />
             {nameHasError && <p>Please write correct name.</p>}
           </div>
-          <div className={classes.element}>
+          <div className={descInputClasses}>
             <label htmlFor="desc">Short description</label>
             <textarea rows="2" id="desc" onChange={descChangeHandler} onBlur={descBlurHandler}  value={descValue}></textarea>
-            {nameHasError && <p>Please add short description.</p>}
+            {descHasError && <p>Please add short description.</p>}
           </div>
-          <div className={classes.element}>
+          <div className={imgInputClasses}>
             <label htmlFor="img">Image</label>
             <input type="text" id="img" onChange={imgChangeHandler} onBlur={imgBlurHandler}  value={imgValue} />
-            {nameHasError && <p>Please add img in http format.</p>}
+            {imgHasError && <p>Please add img in http format.</p>}
           </div>
-          <div className={classes.element}>
+          <div className={isEcoInputClasses}>
             <label htmlFor="eco">Eco farm</label>
             <input type="checkbox" id="eco" onChange={isEcoChangeHandler} onBlur={isEcoBlurHandler}  value={isEcoValue} />
           </div>
-          <div className={classes.element}>
+          <div className={locationInputClasses}>
             <label htmlFor="location">Location</label>
             <input type="text" id="location" onChange={locationChangeHandler} onBlur={locationBlurHandler}  value={locationValue} />
-            {nameHasError && <p>Please write farms location.</p>}
+            {locationHasError && <p>Please write farms location.</p>}
           </div>
-          <div className={classes.element}>
+          <div className={priceInputClasses}>
             <label htmlFor="price">Price per unit in PLN</label>
             <input type="number" id="price" onChange={priceChangeHandler} onBlur={priceBlurHandler}  value={priceValue} />
-            {nameHasError && <p>Please write price per unit.</p>}
+            {priceHasError && <p>Please write price per unit.</p>}
           </div>
-          <div className={classes.element}>
+          <div className={unitInputClasses}>
             <label htmlFor="unit">Unit</label>
             <select name="unit" id="unit">
               <option value={unitValue}>Please choose an option</option>
@@ -211,25 +212,26 @@ const freeDeliveryAmountInputClasses = freeDeliveryAmountHasError
               <option value="kg">kg</option>
               <option value="pcs">pcs</option>
             </select>
-            {nameHasError && <p>Please choose unit.</p>}
+            {unitHasError && <p>Please choose unit.</p>}
           </div>
-          <div className={classes.element}>
+          <div className={isFreeDeliveryInputClasses}>
             <label htmlFor="freedelivery">Free delivery</label>
             <input onClick={()=>{setIsFreeDelivery(!isFreeDelivery)}} onChange={isFreeDeliveryChangeHandler} onBlur={isFreeDeliveryBlurHandler} className={classes.freedelivery} type="checkbox" id="freedelivery" value={isFreeDeliveryValue} />
           </div>
-          {isFreeDelivery && <div className={classes.element}>
+          {isFreeDelivery && <div className={freeDeliveryAmountInputClasses}>
             <label htmlFor="freedeliveryamount">
               Free delivery amount in PLN
             </label>
             <input className="freedeliveryamount" type="number" id="freedeliveryamount" onChange={freeDeliveryAmountChangeHandler} onBlur={freeDeliveryAmountBlurHandler}  value={freeDeliveryAmountValue} />
           </div>}
 
-          <div className={classes.element}>
+          <div className={deliveryAmountInputClasses}>
             <label htmlFor="deliveryamount">Delivery amount in PLN</label>
             <input type="number" id="deliveryamount" onChange={deliveryAmountChangeHandler} onBlur={deliveryAmountBlurHandler}  value={deliveryAmountValue} />
-            {nameHasError && <p>Please write delivery amount.</p>}
+            {deliveryAmountHasError && <p>Please write delivery amount.</p>}
           </div>
-          <button disabled={!formIsValid} className={classes.button}>Add Product</button>
+          {/* <button disabled={!formIsValid} className={classes.button}>Add Product</button> */}
+          <button className={classes.button}>Add Product</button>
         </form>
       </Card>
 
