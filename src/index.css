@@ -32,3 +32,22 @@ input.invalid{
   border: 1px solid #b40e0e;
   background-color: #fddddd;
 }
+.form-control{
+  width: 370px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.form-control p {
+  display: none;
+  width: 100%;
+  font-size: 10px;
+  text-align: right;
+  color: red;
+}
+
+.form-control.invalid p{
+  display: block;
+}
