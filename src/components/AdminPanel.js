@@ -1,4 +1,4 @@
-import { useState,useRef } from "react";
+import { useState } from "react";
 import Card from '../UI/Card';
 import useInput from '../hooks/use-input';
 import classes from "./AdminPanel.module.css";
@@ -19,7 +19,8 @@ import classes from "./AdminPanel.module.css";
 
 const AdminPanel = () => {
 
-const [isFreeDelivery, setIsFreeDelivery] = useState(false);
+const [isFreeDeliveryValue, setIsFreeDelivery] = useState(false);
+const [isEcoValue, setIsEcoValue] = useState(false);
 
 // const [productDetails, setProductDetails] = useState(defaultProductDetails);
 
@@ -50,14 +51,14 @@ const {
   reset: descReset
 } = useInput(value=>value.trim() !== '');
 
-const {
-  inputValue: isEcoValue,
-  isValid: isEcoIsValid,
-  hasError: isEcoHasError,
-  valueChangeHandler: isEcoChangeHandler,
-  inputBlurHandler: isEcoBlurHandler,
-  reset: isEcoReset
-} = useInput(value=>value.trim() !== '');
+// const {
+//   inputValue: isEcoValue,
+//   isValid: isEcoIsValid,
+//   hasError: isEcoHasError,
+//   valueChangeHandler: isEcoChangeHandler,
+//   inputBlurHandler: isEcoBlurHandler,
+//   reset: isEcoReset
+// } = useInput(value=>value.trim() !== '');
 
 const {
   inputValue: locationValue,
@@ -86,14 +87,14 @@ const {
   reset: unitReset
 } = useInput(value=>value.trim() !== '');
 
-const {
-  inputValue: isFreeDeliveryValue,
-  isValid: isFreeDeliveryIsValid,
-  hasError: isFreeDeliveryHasError,
-  valueChangeHandler: isFreeDeliveryChangeHandler,
-  inputBlurHandler: isFreeDeliveryBlurHandler,
-  reset: isFreeDeliveryReset
-} = useInput(value=>value.trim() !== '');
+// const {
+//   inputValue: isFreeDeliveryValue,
+//   isValid: isFreeDeliveryIsValid,
+//   hasError: isFreeDeliveryHasError,
+//   valueChangeHandler: isFreeDeliveryChangeHandler,
+//   inputBlurHandler: isFreeDeliveryBlurHandler,
+//   reset: isFreeDeliveryReset
+// } = useInput(value=>value.trim() !== '');
 
 const {
   inputValue: deliveryAmountValue,
@@ -126,11 +127,13 @@ const submitHandler = (e)=>{
   nameReset();
   imgReset();
   descReset();
-  isEcoReset();
+  setIsFreeDelivery(false);
+  // isEcoReset();
   locationReset();
   priceReset();
   unitReset();
-  isFreeDeliveryReset();
+  setIsEcoValue(false);
+  // isFreeDeliveryReset();
   deliveryAmountReset();
   freeDeliveryAmountReset();
 }
@@ -144,9 +147,6 @@ const imgInputClasses = imgHasError
 const descInputClasses = descHasError
 ? "form-control invalid"
 : "form-control";
-const isEcoInputClasses = isEcoHasError
-? "form-control invalid"
-: "form-control";
 const locationInputClasses = locationHasError
 ? "form-control invalid"
 : "form-control";
@@ -154,9 +154,6 @@ const priceInputClasses = priceHasError
 ? "form-control invalid"
 : "form-control";
 const unitInputClasses = unitHasError
-? "form-control invalid"
-: "form-control";
-const isFreeDeliveryInputClasses = isFreeDeliveryHasError
 ? "form-control invalid"
 : "form-control";
 const deliveryAmountInputClasses = deliveryAmountHasError
@@ -182,17 +179,17 @@ const freeDeliveryAmountInputClasses = freeDeliveryAmountHasError
           </div>
           <div className={descInputClasses}>
             <label htmlFor="desc">Short description</label>
-            <textarea rows="2" id="desc" onChange={descChangeHandler} onBlur={descBlurHandler}  value={descValue}></textarea>
+            <textarea rows="2" id="desc" onChange={descChangeHandler} onBlur={descBlurHandler} value={descValue}></textarea>
             {descHasError && <p>Please add short description.</p>}
           </div>
           <div className={imgInputClasses}>
             <label htmlFor="img">Image</label>
-            <input type="text" id="img" onChange={imgChangeHandler} onBlur={imgBlurHandler}  value={imgValue} />
+            <input type="text" id="img" onChange={imgChangeHandler} onBlur={imgBlurHandler} value={imgValue} />
             {imgHasError && <p>Please add img in http format.</p>}
           </div>
-          <div className={isEcoInputClasses}>
+          <div className='form-control'>
             <label htmlFor="eco">Eco farm</label>
-            <input type="checkbox" id="eco" onChange={isEcoChangeHandler} onBlur={isEcoBlurHandler}  value={isEcoValue} />
+            <input type="checkbox" id="eco" onChange={()=>{setIsEcoValue(!isEcoValue)}} checked={isEcoValue}  value={isEcoValue} />
           </div>
           <div className={locationInputClasses}>
             <label htmlFor="location">Location</label>
@@ -214,11 +211,11 @@ const freeDeliveryAmountInputClasses = freeDeliveryAmountHasError
             </select>
             {unitHasError && <p>Please choose unit.</p>}
           </div>
-          <div className={isFreeDeliveryInputClasses}>
+          <div className='form-control'>
             <label htmlFor="freedelivery">Free delivery</label>
-            <input onClick={()=>{setIsFreeDelivery(!isFreeDelivery)}} onChange={isFreeDeliveryChangeHandler} onBlur={isFreeDeliveryBlurHandler} className={classes.freedelivery} type="checkbox" id="freedelivery" value={isFreeDeliveryValue} />
+            <input checked={isFreeDeliveryValue} onChange={()=>{setIsFreeDelivery(!isFreeDeliveryValue)}} className={classes.freedelivery} type="checkbox" id="freedelivery" value={isFreeDeliveryValue} />
           </div>
-          {isFreeDelivery && <div className={freeDeliveryAmountInputClasses}>
+          {isFreeDeliveryValue && <div className={freeDeliveryAmountInputClasses}>
             <label htmlFor="freedeliveryamount">
               Free delivery amount in PLN
             </label>
