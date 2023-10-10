@@ -203,7 +203,7 @@ const freeDeliveryAmountInputClasses = freeDeliveryAmountHasError
           </div>
           <div className={unitInputClasses}>
             <label htmlFor="unit">Unit</label>
-            <select name="unit" id="unit">
+            <select name="unit" id="unit" onChange={unitChangeHandler} onBlur={unitBlurHandler} >
               <option value={unitValue}>Please choose an option</option>
               <option value="g">g</option>
               <option value="kg">kg</option>
@@ -227,8 +227,8 @@ const freeDeliveryAmountInputClasses = freeDeliveryAmountHasError
             <input type="number" id="deliveryamount" onChange={deliveryAmountChangeHandler} onBlur={deliveryAmountBlurHandler}  value={deliveryAmountValue} />
             {deliveryAmountHasError && <p>Please write delivery amount.</p>}
           </div>
-          {/* <button disabled={!formIsValid} className={classes.button}>Add Product</button> */}
-          <button className={classes.button}>Add Product</button>
+          <button disabled={!formIsValid} className={classes.button}>Add Product</button>
+          {/* <button className={classes.button}>Add Product</button> */}
         </form>
       </Card>
 
