@@ -136,6 +136,33 @@ const submitHandler = (e)=>{
   // isFreeDeliveryReset();
   deliveryAmountReset();
   freeDeliveryAmountReset();
+
+  const product = {
+    name: nameValue,
+    img: imgValue,
+    desc: descValue,
+    eco: isEcoValue,
+    location: locationValue,
+    price: priceValue,
+    unit: unitValue,
+    isFreeDelivery: isFreeDeliveryValue,
+    deliceryAmount: deliveryAmountValue,
+    freeDeliveryAmount: freeDeliveryAmountValue
+  }
+
+  async function addMovieHandler(product) {
+    const response = await fetch(
+      "https://http-request-api-5870c-default-rtdb.firebaseio.com/products.json",
+      {
+        method: "POST",
+        body: JSON.stringify(product),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+  }
 }
 
 const nameInputClasses = nameHasError
