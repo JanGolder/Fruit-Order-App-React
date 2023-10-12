@@ -150,9 +150,13 @@ const submitHandler = (e)=>{
     freeDeliveryAmount: freeDeliveryAmountValue
   }
 
+  addMovieHandler(product);
+
+}
+
   async function addMovieHandler(product) {
     const response = await fetch(
-      "https://http-request-api-5870c-default-rtdb.firebaseio.com/products.json",
+      "https://greenfood-3fadf-default-rtdb.firebaseio.com/products.json",
       {
         method: "POST",
         body: JSON.stringify(product),
@@ -163,7 +167,8 @@ const submitHandler = (e)=>{
     );
     const data = await response.json();
   }
-}
+
+
 
 const nameInputClasses = nameHasError
 ? "form-control invalid"
