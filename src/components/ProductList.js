@@ -2,6 +2,8 @@ import Product from "./Product";
 import Card from "../UI/Card";
 import classes from "./ProductList.module.css";
 
+
+
 const products = [
   {
     id: "1",
@@ -58,6 +60,48 @@ const products = [
 ];
 
 const ProductList = () => {
+
+
+  const fetchMoviesHandler = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(
+        "https://http-request-api-5870c-default-rtdb.firebaseio.com/movies.json"
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+      const data = await response.json();
+      const loadedMovies = [];
+
+      for (const key in data) {
+        loadedMovies.push({
+          id: key,
+          title: data[key].title,
+          openingText: data[key].openingText,
+          releaseDate: data[key].releaseDate,
+        });
+      }
+
+      setMovies(loadedMovies);
+    } catch (error) {
+      setError(error.message);
+    }
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
+
+
+
+
+
+
+
+
   return (
     <section className={classes['product-list']}>
       <Card>
