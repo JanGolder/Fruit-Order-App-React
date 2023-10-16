@@ -82,9 +82,15 @@ const ProductList = () => {
       for (const key in data) {
         loadedProducts.push({
           id: key,
-          title: data[key].title,
-          openingText: data[key].openingText,
-          releaseDate: data[key].releaseDate,
+          name: data[key].name,
+          img: data[key].img,
+          desc: data[key].desc,
+          isEco: data[key].isEco,
+          location: data[key].location,
+          price: data[key].price,
+          unit: data[key].unit,
+          isFreeDelivery: data[key].isFreeDelivery,
+          freeDeliveryAmount: data[key].freeDeliveryAmount,
         });
       }
 
