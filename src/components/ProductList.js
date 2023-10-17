@@ -106,12 +106,6 @@ const ProductList = () => {
   }, [fetchProductsHandler]);
 
 
-
-console.log(products)
-
-
-
-
   return (
     <section className={classes['product-list']}>
       <Card>
