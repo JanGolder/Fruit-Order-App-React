@@ -3,8 +3,6 @@ import Product from "./Product";
 import Card from "../UI/Card";
 import classes from "./ProductList.module.css";
 
-
-
 // const products = [
 //   {
 //     id: "1",
