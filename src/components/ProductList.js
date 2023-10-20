@@ -91,7 +91,6 @@ const ProductList = () => {
           freeDeliveryAmount: data[key].freeDeliveryAmount,
         });
       }
-
       setProducts(loadedProducts);
     } catch (error) {
       setError(error.message);
@@ -102,7 +101,6 @@ const ProductList = () => {
   useEffect(() => {
     fetchProductsHandler();
   }, [fetchProductsHandler]);
-
 
   return (
     <section className={classes['product-list']}>
