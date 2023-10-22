@@ -2,7 +2,6 @@ import { useState, useCallback, useEffect } from "react";
 import Product from "./Product";
 import Card from "../UI/Card";
 import classes from "./ProductList.module.css";
-
 // const products = [
 //   {
 //     id: "1",
@@ -57,7 +56,6 @@ import classes from "./ProductList.module.css";
 //     freeDeliveryAmount: 100,
 //   },
 // ];
-
 const ProductList = () => {
 
   const [products, setProducts] = useState([]);
