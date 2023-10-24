@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import classes from './ProductDetail.module.css'
+import ecoFram from "../assets/ecoFram.png";
+import classes from "./ProductDetail.module.css";
 
 const ProductDetail = () => {
   const params = useParams();
@@ -21,18 +22,19 @@ const ProductDetail = () => {
       }
       const data = await response.json();
 
-    const product = {
-          id: data.img,
-          name: data.name,
-          img: data.img,
-          desc: data.desc,
-          isEco: data.isEco,
-          location: data.location,
-          price: data.price,
-          unit: data.unit,
-          isFreeDelivery: data.isFreeDelivery,
-          freeDeliveryAmount: data.freeDeliveryAmount,
-        };
+      const product = {
+        id: data.img,
+        name: data.name,
+        img: data.img,
+        desc: data.desc,
+        isEco: data.eco,
+        location: data.location,
+        price: data.price,
+        unit: data.unit,
+        deliveryAmount: data.deliceryAmount,
+        isFreeDelivery: data.isFreeDelivery,
+        freeDeliveryAmount: data.freeDeliveryAmount,
+      };
       setProduct(product);
     } catch (error) {
       setError(error.message);
@@ -40,16 +42,26 @@ const ProductDetail = () => {
     setIsLoading(false);
   }, []);
 
+console.log(product.isEco)
+
   useEffect(() => {
     fetchProductsHandler();
   }, [fetchProductsHandler]);
 
-
-
-
   return (
     <section className={classes["product-detail-wrap"]}>
-      <p>Product Detail - {product.name}</p>
+      <div>
+        <img src={product.img} />
+        <div>
+          <p>{product.name}</p>      {product.isEco && <img className={classes['eco-farm']} src={ecoFram} />}
+          <p>{product.desc}</p>
+          <p>Farm Location: {product.location}</p>
+          <p>Eco Nutrition: {product.isEco ? 'Yes' : 'No'}</p>
+          <p>Price: {product.price}/{product.unit}</p>
+          <p>Delivery: {product.deliveryAmount} PLN</p>
+          {product.isFreeDelivery && (<p>Free delivery available up to: {product.freeDeliveryAmount} PLN</p>)}
+        </div>
+      </div>
     </section>
   );
 };
