@@ -81,7 +81,7 @@ const ProductList = () => {
           name: data[key].name,
           img: data[key].img,
           desc: data[key].desc,
-          isEco: data[key].isEco,
+          isEco: data[key].eco,
           location: data[key].location,
           price: data[key].price,
           unit: data[key].unit,
