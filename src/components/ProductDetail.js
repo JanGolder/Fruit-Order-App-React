@@ -50,9 +50,8 @@ console.log(product.isEco)
 
   return (
     <section className={classes["product-detail-wrap"]}>
-      <div>
-        <img src={product.img} />
-        <div>
+        <img className={classes["main-img"]} src={product.img} />
+        <div className={classes["content-wrap"]}>
           <p>{product.name}</p>      {product.isEco && <img className={classes['eco-farm']} src={ecoFram} />}
           <p>{product.desc}</p>
           <p>Farm Location: {product.location}</p>
@@ -61,7 +60,6 @@ console.log(product.isEco)
           <p>Delivery: {product.deliveryAmount} PLN</p>
           {product.isFreeDelivery && (<p>Free delivery available up to: {product.freeDeliveryAmount} PLN</p>)}
         </div>
-      </div>
     </section>
   );
 };
