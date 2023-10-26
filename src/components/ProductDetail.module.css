@@ -1,7 +1,19 @@
 .product-detail-wrap{
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
     min-height: calc(100vh - 100px);
     background-color: #fff;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.main-img{
+    width: 30%;
+    display: block;
+}
+
+.content-wrap{
+    width: 66%;
 }
