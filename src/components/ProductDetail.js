@@ -42,8 +42,6 @@ const ProductDetail = () => {
     setIsLoading(false);
   }, []);
 
-console.log(product.isEco)
-
   useEffect(() => {
     fetchProductsHandler();
   }, [fetchProductsHandler]);
@@ -52,7 +50,8 @@ console.log(product.isEco)
     <section className={classes["product-detail-wrap"]}>
         <img className={classes["main-img"]} src={product.img} />
         <div className={classes["content-wrap"]}>
-          <p>{product.name}</p>      {product.isEco && <img className={classes['eco-farm']} src={ecoFram} />}
+          <p className={classes.name}>{product.name}</p>      
+          {product.isEco && <img className={classes['eco-farm']} src={ecoFram} />}
           <p>{product.desc}</p>
           <p>Farm Location: {product.location}</p>
           <p>Eco Nutrition: {product.isEco ? 'Yes' : 'No'}</p>
