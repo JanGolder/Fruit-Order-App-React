@@ -2,11 +2,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
-    min-height: calc(100vh - 100px);
+    align-items: start;
+    min-height: calc(100vh - 300px);
     background-color: #fff;
     width: 80%;
-    margin: 0 auto;
+    margin: 10% auto 0;
 }
 
 .main-img{
@@ -16,4 +16,18 @@
 
 .content-wrap{
     width: 66%;
+    position: relative;
+}
+.content-wrap p{
+    margin-bottom: 10px;
+}
+
+.name{
+    font-size: 35px;
+}
+
+.eco-farm{
+    position: absolute;
+    top: -15%;
+    left: 0%;
 }
