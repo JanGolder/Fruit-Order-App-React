@@ -111,6 +111,7 @@ const ProductList = () => {
         </select>
         <input type="text" placeholder="Find Products"/>
         <ul>
+          {isLoading && <p className={classes.loader}>Loading...</p>}
           {products.map((product) => {
             return <Product key={product.id} productData={product} />;
           })}
