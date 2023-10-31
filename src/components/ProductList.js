@@ -83,6 +83,7 @@ const ProductList = () => {
           desc: data[key].desc,
           isEco: data[key].eco,
           location: data[key].location,
+          region: data[key].region,
           price: data[key].price,
           unit: data[key].unit,
           isFreeDelivery: data[key].isFreeDelivery,
