@@ -29,6 +29,7 @@ const ProductDetail = () => {
         desc: data.desc,
         isEco: data.eco,
         location: data.location,
+        region: data.region,
         price: data.price,
         unit: data.unit,
         deliveryAmount: data.deliceryAmount,
@@ -53,7 +54,7 @@ const ProductDetail = () => {
           <p className={classes.name}>{product.name}</p>      
           {product.isEco && <img className={classes['eco-farm']} src={ecoFram} />}
           <p>{product.desc}</p>
-          <p>Farm Location: {product.location}</p>
+          <p>Farm Location: {product.location} / {product.region} voivodeship</p>
           <p>Eco Nutrition: {product.isEco ? 'Yes' : 'No'}</p>
           <p>Price: {product.price}/{product.unit}</p>
           <p>Delivery: {product.deliveryAmount} PLN</p>
