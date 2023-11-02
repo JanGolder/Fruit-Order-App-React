@@ -60,6 +60,9 @@ const ProductDetail = () => {
           <p>Delivery: {product.deliveryAmount} PLN</p>
           {product.isFreeDelivery && (<p>Free delivery available up to: {product.freeDeliveryAmount} PLN</p>)}
         </div>
+        <div>
+          <button>Remove Product</button>
+        </div>
     </section>
   );
 };

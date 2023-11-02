@@ -263,7 +263,6 @@ const freeDeliveryAmountInputClasses = freeDeliveryAmountHasError
           {/* <button className={classes.button}>Add Product</button> */}
         </form>
       </Card>
-
     </section>
   );
 };
