@@ -62,6 +62,7 @@ const ProductDetail = () => {
         </div>
         <div>
           <button>Remove Product</button>
+          <button>Edit Product</button>
         </div>
     </section>
   );
