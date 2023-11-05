@@ -68,6 +68,14 @@ const {
   inputBlurHandler: locationBlurHandler,
   reset: locationReset
 } = useInput(value=>value.trim() !== '');
+const {
+  inputValue: voivodeshipValue,
+  isValid: voivodeshipIsValid,
+  hasError: voivodeshipHasError,
+  valueChangeHandler: voivodeshipChangeHandler,
+  inputBlurHandler: voivodeshipBlurHandler,
+  reset: voivodeshipReset
+} = useInput(value=>value.trim() !== '');
 
 const {
   inputValue: priceValue,
@@ -117,7 +125,7 @@ const {
 let formIsValid = false;
 
 // ADD Unit Validation (unitIsValid)
-if(nameIsValid && imgIsValid && descIsValid && locationIsValid && priceIsValid && deliveryAmountIsValid && freeDeliveryAmountIsValid){
+if(nameIsValid && imgIsValid && descIsValid && locationIsValid && voivodeshipIsValid && priceIsValid && deliveryAmountIsValid && freeDeliveryAmountIsValid){
   formIsValid=true;
 }
 
@@ -130,6 +138,7 @@ const submitHandler = (e)=>{
   setIsFreeDelivery(false);
   // isEcoReset();
   locationReset();
+  voivodeshipReset();
   priceReset();
   unitReset();
   setIsEcoValue(false);
@@ -182,6 +191,9 @@ const descInputClasses = descHasError
 const locationInputClasses = locationHasError
 ? "form-control invalid"
 : "form-control";
+const voivodeshipInputClasses = voivodeshipHasError
+? "form-control invalid"
+: "form-control";
 const priceInputClasses = priceHasError
 ? "form-control invalid"
 : "form-control";
@@ -227,6 +239,15 @@ const freeDeliveryAmountInputClasses = freeDeliveryAmountHasError
             <label htmlFor="location">Location</label>
             <input type="text" id="location" onChange={locationChangeHandler} onBlur={locationBlurHandler}  value={locationValue} />
             {locationHasError && <p>Please write farms location.</p>}
+          </div>
+          <div className={voivodeshipInputClasses}>
+            <label htmlFor="voivodeship">Voivodeship</label>
+            <select name="voivodeship" id="voivodeship" onChange={voivodeshipChangeHandler} onBlur={voivodeshipBlurHandler} >
+              <option value={voivodeshipValue}>Please choose an option</option>
+              <option value="pomorskie">pomorskie</option>
+              <option value="mazowieckie">mazowieckie</option>
+            </select>
+            {voivodeshipHasError && <p>Please choose voivodeship.</p>}
           </div>
           <div className={priceInputClasses}>
             <label htmlFor="price">Price per unit in PLN</label>
