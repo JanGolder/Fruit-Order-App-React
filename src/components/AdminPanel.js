@@ -162,7 +162,6 @@ const submitHandler = (e)=>{
   addMovieHandler(product);
 
 }
-
   async function addMovieHandler(product) {
     const response = await fetch(
       "https://greenfood-3fadf-default-rtdb.firebaseio.com/products.json",
@@ -177,9 +176,7 @@ const submitHandler = (e)=>{
     const data = await response.json();
   }
 
-
-
-const nameInputClasses = nameHasError
+  const nameInputClasses = nameHasError
 ? "form-control invalid"
 : "form-control";
 const imgInputClasses = imgHasError
@@ -274,7 +271,6 @@ const freeDeliveryAmountInputClasses = freeDeliveryAmountHasError
             </label>
             <input className="freedeliveryamount" type="number" id="freedeliveryamount" onChange={freeDeliveryAmountChangeHandler} onBlur={freeDeliveryAmountBlurHandler}  value={freeDeliveryAmountValue} />
           </div>}
-
           <div className={deliveryAmountInputClasses}>
             <label htmlFor="deliveryamount">Delivery amount in PLN</label>
             <input type="number" id="deliveryamount" onChange={deliveryAmountChangeHandler} onBlur={deliveryAmountBlurHandler}  value={deliveryAmountValue} />
