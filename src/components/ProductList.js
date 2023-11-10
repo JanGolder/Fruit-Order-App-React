@@ -61,7 +61,7 @@ const ProductList = () => {
         <ul>
           {isLoading && <p className={classes.loader}>Loading...</p>}
           {products.map((product) => {
-            return <Product key={product.id} productData={product} />;
+            return <Product key={product.id} productData={product} />
           })}
         </ul>
       </Card>

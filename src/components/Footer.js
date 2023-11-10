@@ -6,6 +6,6 @@ const Footer = ()=>{
             <p>© GolderStudio, Inc. 2023. For our users!</p>
         </footer>
     )
-};
+}
 
 export default Footer;

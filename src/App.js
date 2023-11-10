@@ -25,7 +25,7 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <AuthContextProvider>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </AuthContextProvider>
   )
 };
