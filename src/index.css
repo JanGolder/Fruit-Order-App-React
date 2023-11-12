@@ -29,8 +29,14 @@ header a.active::after {
   background-color: #27bb3e;
 }
 input.invalid{
-  border: 1px solid #b40e0e;
+  border: 1px solid red;
   background-color: #fddddd;
+}
+.invalid input{
+  border: 1px solid red;
+}
+.invalid textarea{
+  border: 1px solid red;
 }
 .form-control{
   width: 370px;
