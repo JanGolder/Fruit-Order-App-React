@@ -173,10 +173,10 @@ const submitHandler = (e)=>{
         },
       }
     );
-    const data = await response.json();
+    // const data = await response.json();
   }
 
-  const nameInputClasses = nameHasError
+const nameInputClasses = nameHasError
 ? "form-control invalid"
 : "form-control";
 const imgInputClasses = imgHasError
