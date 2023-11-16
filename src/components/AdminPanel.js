@@ -131,7 +131,7 @@ if(nameIsValid && imgIsValid && descIsValid && locationIsValid && voivodeshipIsV
 
 const submitHandler = (e)=>{
   e.preventDefault();
-  console.log(nameValue, imgValue, descValue, isEcoValue, locationValue, priceValue, unitValue, isFreeDeliveryValue, deliveryAmountValue, freeDeliveryAmountValue);
+  // console.log(nameValue, imgValue, descValue, isEcoValue, locationValue, priceValue, unitValue, isFreeDeliveryValue, deliveryAmountValue, freeDeliveryAmountValue);
   nameReset();
   imgReset();
   descReset();
