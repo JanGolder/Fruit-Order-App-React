@@ -16,7 +16,6 @@
     color: #fff;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;
     font-size: 24px;
-
 }
 
 .right-side-header{
@@ -48,7 +47,7 @@
     position: relative;
     padding: 10px 2px 0;
     color: #fff;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;
     font-size: 15px;
     text-decoration: none;
     cursor: pointer;
