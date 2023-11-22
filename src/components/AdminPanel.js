@@ -152,6 +152,7 @@ const submitHandler = (e)=>{
     desc: descValue,
     eco: isEcoValue,
     location: locationValue,
+    voivodeship:voivodeshipValue,
     price: priceValue,
     unit: unitValue,
     isFreeDelivery: isFreeDeliveryValue,
