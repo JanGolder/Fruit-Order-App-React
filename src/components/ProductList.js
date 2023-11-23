@@ -30,6 +30,7 @@ const ProductList = () => {
           desc: data[key].desc,
           isEco: data[key].eco,
           location: data[key].location,
+          voivoship: data[key].voivoship,
           region: data[key].region,
           price: data[key].price,
           unit: data[key].unit,
