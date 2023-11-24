@@ -7,6 +7,7 @@ const ProductList = () => {
 
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [voivodeship, setVoivoship] = useState();
   const [error, setError] = useState(null);
 
   const fetchProductsHandler = useCallback(async () => {
@@ -49,11 +50,16 @@ const ProductList = () => {
     fetchProductsHandler();
   }, [fetchProductsHandler]);
 
+  const voivodeshipHandler = (e)=>{
+    setVoivoship(e.target.value);
+  }
+
+
   return (
     <section className={classes['product-list']}>
       <Card>
         <h1>Order Fresh Fruits and Vegetables from your neighborhood!</h1>
-        <select name="location" defaultValue="">
+        <select name="location" defaultValue="" onChange={voivodeshipHandler}>
             <option value="" disabled>Choose Your Location</option>
             <option value="pomorskie">pomorskie</option>
             <option value="mazowieckie">mazowieckie</option>
