@@ -7,8 +7,10 @@ const ProductList = () => {
 
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [voivodeship, setVoivoship] = useState();
   const [error, setError] = useState(null);
+  const [chosenLocation, setChosenLocation] = useState('all');
+  const [filteredName, setfilteredName] = useState('');
+  const [newProducts,setNewProducts] = useState([]);
 
   const fetchProductsHandler = useCallback(async () => {
     setIsLoading(true);
@@ -31,8 +33,7 @@ const ProductList = () => {
           desc: data[key].desc,
           isEco: data[key].eco,
           location: data[key].location,
-          voivoship: data[key].voivoship,
-          region: data[key].region,
+          voivodeship: data[key].voivodeship,
           price: data[key].price,
           unit: data[key].unit,
           isFreeDelivery: data[key].isFreeDelivery,
@@ -40,6 +41,7 @@ const ProductList = () => {
         });
       }
       setProducts(loadedProducts);
+      setNewProducts(loadedProducts);
     } catch (error) {
       setError(error.message);
     }
@@ -51,7 +53,27 @@ const ProductList = () => {
   }, [fetchProductsHandler]);
 
   const voivodeshipHandler = (e)=>{
-    setVoivoship(e.target.value);
+    setChosenLocation(e.target.value);
+    if(e.target.value === 'all'){
+      setNewProducts(products);
+    } else{
+    const filteredProducts = products.filter(product => product.voivodeship === e.target.value && product.name.toLowerCase().includes(filteredName.toLowerCase()));
+      setNewProducts(filteredProducts);      
+    }
+
+  }
+
+  const findProductsHandler = (e) =>{
+      setfilteredName(e.target.value);
+      if(chosenLocation === 'all'){
+        const filteredProducts = products.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase()));
+        setNewProducts(filteredProducts);       
+      } else {
+      const filteredProducts = products.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase()) && product.voivodeship === chosenLocation);
+        setNewProducts(filteredProducts);        
+      }
+
+      console.log()
   }
 
 
@@ -59,15 +81,16 @@ const ProductList = () => {
     <section className={classes['product-list']}>
       <Card>
         <h1>Order Fresh Fruits and Vegetables from your neighborhood!</h1>
-        <select name="location" defaultValue="" onChange={voivodeshipHandler}>
-            <option value="" disabled>Choose Your Location</option>
-            <option value="pomorskie">pomorskie</option>
+        <select name="location" defaultValue="all" onChange={voivodeshipHandler}>
+            <option value="all" disabled>Choose Your Location</option>
+             <option value="all">all locations</option>
+             <option value="pomorskie">pomorskie</option>
             <option value="mazowieckie">mazowieckie</option>
         </select>
-        <input type="text" placeholder="Find Products"/>
+        <input type="text" placeholder="Find Products" onChange={findProductsHandler}/>
         <ul>
           {isLoading && <p className={classes.loader}>Loading...</p>}
-          {products.map((product) => {
+          {newProducts.map((product) => {
             return <Product key={product.id} productData={product} />
           })}
         </ul>
