@@ -72,8 +72,6 @@ const ProductList = () => {
       const filteredProducts = products.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase()) && product.voivodeship === chosenLocation);
         setNewProducts(filteredProducts);        
       }
-
-      console.log()
   }
 
 
