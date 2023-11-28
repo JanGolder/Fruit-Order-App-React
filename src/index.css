@@ -57,3 +57,7 @@ input.invalid{
 .form-control.invalid p{
   display: block;
 }
+ul{
+  list-style: none;
+  padding-left: 0;
+}
