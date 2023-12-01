@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import Card from '../UI/Card';
 import useInput from '../hooks/use-input';
 import classes from "./AdminPanel.module.css";
+import ShortProductList from "./ShortProductList";
 
 // const defaultProductDetails = {
 //     id: '',
@@ -21,6 +22,9 @@ const AdminPanel = () => {
 
 const [isFreeDeliveryValue, setIsFreeDelivery] = useState(false);
 const [isEcoValue, setIsEcoValue] = useState(false);
+const [isLoading, setIsLoading] = useState(false);
+const [products, setProducts] = useState([]);
+const [error, setError] = useState(false);
 
 // const [productDetails, setProductDetails] = useState(defaultProductDetails);
 
@@ -175,7 +179,6 @@ const submitHandler = (e)=>{
       }
     );
     const data = await response.json();
-    console.log(data)
   }
 
 const nameInputClasses = nameHasError
@@ -205,6 +208,51 @@ const deliveryAmountInputClasses = deliveryAmountHasError
 const freeDeliveryAmountInputClasses = freeDeliveryAmountHasError
 ? "form-control invalid"
 : "form-control";
+
+
+// ==========
+
+const fetchProductsHandler = useCallback(async () => {
+  setIsLoading(true);
+  setError(null);
+  try {
+    const response = await fetch(
+      "https://greenfood-3fadf-default-rtdb.firebaseio.com/products.json"
+    );
+    if (!response.ok) {
+      throw new Error("Something went wrong!");
+    }
+    const data = await response.json();
+    const loadedProducts = [];
+
+    for (const key in data) {
+      loadedProducts.push({
+        id: key,
+        name: data[key].name,
+        location: data[key].location,
+        voivodeship: data[key].voivodeship,
+      });
+    }
+    setProducts(loadedProducts);
+  } catch (error) {
+    setError(error.message);
+  }
+  setIsLoading(false);
+}, []);
+
+useEffect(() => {
+  fetchProductsHandler();
+}, [fetchProductsHandler, products]);
+
+const removeProductHandler = (id)=>{
+  const newProducts = products.filter(product => product.id !== id);
+  setProducts(newProducts);
+}
+
+
+
+
+
 
   return (
     <section className={classes["admin-wrap"]}>
@@ -281,6 +329,9 @@ const freeDeliveryAmountInputClasses = freeDeliveryAmountHasError
           <button disabled={!formIsValid} className={classes.button}>Add Product</button>
           {/* <button className={classes.button}>Add Product</button> */}
         </form>
+      </Card>
+      <Card>
+        <ShortProductList products={products} onRemoveProduct={removeProductHandler}/>
       </Card>
     </section>
   );
