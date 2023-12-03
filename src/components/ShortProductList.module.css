@@ -1,0 +1,4 @@
+.product-list{
+    max-height: 390px;
+    overflow: auto;
+}
