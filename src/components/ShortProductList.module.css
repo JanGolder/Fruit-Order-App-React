@@ -1,4 +1,6 @@
 .product-list{
     max-height: 390px;
     overflow: auto;
+    border-bottom: 1px solid #a4e2ad;  
+    padding-right: 15px;
 }
