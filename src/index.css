@@ -61,3 +61,16 @@ ul{
   list-style: none;
   padding-left: 0;
 }
+ul::-webkit-scrollbar {
+  width: 8px;               
+}
+
+ul::-webkit-scrollbar-track {
+  background: #a4e2ad;        
+}
+
+ul::-webkit-scrollbar-thumb {
+  background-color: #27BB3E;;   
+  border-radius: 0px;     
+  border: 2px solid #8cd397; 
+}
